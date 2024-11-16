@@ -1,10 +1,17 @@
-const API_URL = "https://workspace-methed.vercel.app/"; // сервер, который возвращает нам данные
+const API_URL = "https://tangible-quill-speedboat.glitch.me/";
+
+// const API_URL = "https://workspace-methed.vercel.app/"; // сервер, который возвращает нам данные
 // const LOCATION_URL = "api/locations";
 
-const API_URL_LOCATION = "https://workspace-methed.vercel.app/api/locations"; // API сервер, который возвращает нам данные
+const API_URL_LOCATION = "https://tangible-quill-speedboat.glitch.me/api/locations"; // API сервер на основе Glitch для отправки данных на сервер
+// const API_URL_LOCATION = "https://workspace-methed.vercel.app/api/locations"; // API сервер, который возвращает нам данные
 // const API_URL_LOCATION = "/json/location.json";
+// const API_URL_LOCATION = "https://adorable-half-wannanosaurus.glitch.me/location"; 
 
-const API_URL_VACANCY = "https://workspace-methed.vercel.app/api/vacancy";
+const API_URL_VACANCY = "https://tangible-quill-speedboat.glitch.me/api/vacancy";
+// const API_URL_VACANCY = "https://adorable-half-wannanosaurus.glitch.me/vacancy";
+// const API_URL_VACANCY = "https://workspace-methed.vercel.app/api/vacancy";
+
 // const API_URL_VACANCY = "/json/vacancies.json";
 
 const cardsList = document.querySelector(".cards__list")
@@ -90,7 +97,7 @@ const loadMoreVacancies = () =>{
     };
 };
 
-const renderError =error=>{console.warn(error)};
+const renderError =(error) => {console.warn(error)};
 
 
 
@@ -328,7 +335,7 @@ const init = ()=>{ // запускается сразу после запуск�
                 .addRequiredGroup("#experience", 'Choose experience')
                 .addRequiredGroup("#type", 'Choose job type')
 
-        
+                return validator;
             };
 
         const fileController = ()=>{
@@ -352,15 +359,32 @@ const init = ()=>{ // запускается сразу после запуск�
 
         }
 
-        const formController=()=>{
+        const formController=()=>{                              // send new vacancy on the server
             const form = document.querySelector(".employer__form");
-            validationForm(form);
-
-            form.addEventListener("submit", (event)=>{
+            const validate = validationForm(form);
+            const employerError = document.querySelector('.employer__error');
+            form.addEventListener("submit", async (event)=>{
                 event.preventDefault();
+                if(!validate.isValid) return;
 
-            })
-        }
+                try {
+                    const formData = new FormData(form);
+                    employerError.textContent='is sending...';
+                    const response = await fetch(API_URL_VACANCY, {
+                    method: 'POST',
+                    body: formData,
+                });
+
+                if (response.ok){
+                    employerError.textContent='';
+                    window.location.href = 'index.html';
+                }
+                } catch (error) {
+                    employerError.textContent='Error occurred';
+                    console.error(error);
+                }
+            });
+        };
 
 
         formController();
