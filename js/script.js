@@ -9,7 +9,7 @@ const API_URL_VACANCY = "https://workspace-methed.vercel.app/api/vacancy";
 
 const cardsList = document.querySelector(".cards__list")
 let lastUrl = '';
-const pagination = '';
+const pagination = {};
 
 // fetch(API_URL) // запрос получения данных с сервера
 //     .then((response)=>{return response.json()}) // колбек функция возвращает данные сервера в формате json
@@ -186,7 +186,8 @@ const observer = new IntersectionObserver(
 
 //  SELECT CITY
 const init = ()=>{ // запускается сразу после запуска сайта
-    const vacanciesFilterBtn = document.querySelector(".vacancies__filter-btn"); // находим фильтр для скрывания/раскрывания
+    try {
+        const vacanciesFilterBtn = document.querySelector(".vacancies__filter-btn"); // находим фильтр для скрывания/раскрывания
     const vacanciesFilter = document.querySelector('.vacancies__filter');
     const filterForm = document.querySelector('.filter__form'); // находим фильтр
     const citySelect = document.querySelector("#city");
@@ -269,7 +270,106 @@ const init = ()=>{ // запускается сразу после запуск�
             closeFilter(vacanciesFilterBtn, vacanciesFilter, 'vacancies__filter-btn_active', 'vacancies__filter_active');
         });
     });
-       
+  
+    } catch (error) {
+        console.log("error:", error);
+        console.warn("We're not in the index.html page");
+    }  
+    
+    
+    try {
+        const validationForm =(form)=> {
+            const validator = new JustValidate(form, {
+                errorLabelStyle: {
+                    color: "#f00",
+                },
+                errorFieldStyle: {
+                    borderColor: "#f00",
+                },
+                errorFieldCssClass: 'invalid', // add class if invalid input
+                errorsContainer: document.querySelector(".employer__error"),
+            });
+            validator
+                .addField('#logo', [{
+                        rule: 'minFilesCount', 
+                        value:1,
+                        errorMessage: 'Add logo',
+                    },
+                    {
+                        rule: 'files',
+                        value: {
+                          files: {
+                            extensions: ['jpeg', 'jpg', 'png'],
+                            maxSize: 102400,
+                            types: ['image/jpeg', 'image/jpg', 'image/png'],
+                          },
+                        },
+                       errorMessage: 'The file size must be no more than 100 KB',
+                    },
+                ])
+                .addField('#company', [{rule: 'required', errorMessage: 'Fill company name'}])
+                .addField('#title', [{rule: 'required', errorMessage: 'Fill company title'}])
+                .addField('#salary', [{rule: 'required', errorMessage: 'Fill salary'}])
+                .addField('#location', [{rule: 'required', errorMessage: 'Fill location'}])
+                .addField('#email', [
+                    {
+                        rule: 'required', 
+                        errorMessage: 'Fill e-mail'
+                    },
+                    {
+                        rule: 'email', 
+                        errorMessage: 'Enter correct email'
+                    },
+
+                    ])
+                .addField('#description', [{rule: 'required', errorMessage: 'Fill job description'}])     
+        
+                .addRequiredGroup("#format", 'Choose remote')
+                .addRequiredGroup("#experience", 'Choose experience')
+                .addRequiredGroup("#type", 'Choose job type')
+
+        
+            };
+
+        const fileController = ()=>{
+            const file = document.querySelector('.file');
+            const preview = file.querySelector('.file__preview');
+            const input = file.querySelector('.file__input');
+
+            input.addEventListener('change', (event)=>{ // проверка загружен ли хотя бы один файл
+                if(event.target.files.length>0){
+                    const src = URL.createObjectURL(event.target.files[0]);
+                    file.classList.add('file_active');
+                    preview.src=src;
+                    preview.style.display='block';
+                } else{
+                    file.classList.remove('file_active');
+                    preview.src='';
+                    preview.style.display='none';
+                }
+            })
+
+
+        }
+
+        const formController=()=>{
+            const form = document.querySelector(".employer__form");
+            validationForm(form);
+
+            form.addEventListener("submit", (event)=>{
+                event.preventDefault();
+
+            })
+        }
+
+
+        formController();
+        fileController();
+
+    } catch (error) {
+        console.log("error:", error);
+        console.warn("We're not in the employer.html page");
+    } 
 };
 
 init();

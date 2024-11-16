@@ -64,20 +64,14 @@
     }
 
     &__btn{
-        padding: 8px 24px;
-        border-radius: 4px;
-        background-color: $colorBtns;
-        border: 2px solid transparent;
-        transition-property: color, background-color;
-        transition-duration: 0.2s;
-        transition-timing-function: cubic-bezier(0.455, 0.03, 0.515, 0.955);
+        @include link-buttons(8px 24px, 4px, 15px);
     }
     &__btn:focus-visible{
-        border-color: #4f58be;
+        border-color: $colorFocus;
     }
     &__btn:hover{
         color: #fff;
-        background-color: #2a18ff;
+        background-color: $colorTextBlue;
     }
 }
 

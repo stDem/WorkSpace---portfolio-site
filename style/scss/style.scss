@@ -6,6 +6,20 @@ $colorTextBlue: #2A18FF;
 $colorTextGray: #CCC;
 $colorBackgroundLight: #FFF;
 $colorBackgroundVacancy: #EAECFF;
+$colorFocus: #4f58be;
+$colorError: #f00;
+
+@mixin link-buttons ($padding, $borderRadius, $fontSize){
+    padding: $padding;
+    border-radius: $borderRadius;
+    background: $colorBtns;
+    font-size: $fontSize;
+    border: 2px solid transparent;
+    transition-property: color, background-color;
+    transition-duration: 0.2s;
+    transition-timing-function: cubic-bezier(0.455, 0.03, 0.515, 0.955);
+    cursor: pointer;
+}
 
 @import "fonts";
 @import "header";
@@ -19,6 +33,12 @@ $colorBackgroundVacancy: #EAECFF;
 @import "footer";
 @import "modal";
 @import "detail";
+
+@import "employer";
+@import "file";
+@import "radio";
+
+
 
 html{
     scroll-behavior: smooth;

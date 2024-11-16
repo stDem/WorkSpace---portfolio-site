@@ -3,26 +3,34 @@
 
     &__container{ // распределяем элементы по разным сторонам как в макете
         display: flex;
+        flex-wrap: wrap;
         align-items: center;
         justify-content: space-between;
+        gap: 24px;
     }
-
+    &__links{
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+    }
     &__link{
-        padding: 12px 32px;
-        border-radius: 8px;
-        background: $colorBtns;
-        font-size: 20px;
-        border: 2px solid transparent;
-        transition-property: color, background-color;
-        transition-duration: 0.2s;
-        transition-timing-function: cubic-bezier(0.455, 0.03, 0.515, 0.955);
+        @include link-buttons(12px 32px, 8px, 20px);
+        text-align: center;
+
+        &_o{
+            background-color: transparent;
+            border: 1px solid $colorBtns;
+        }
     }
     &__link:focus-visible{
-        border-color: #4f58be;
+        border-color: $colorFocus;
     }
     &__link:hover{
         color: #fff;
-        background-color: #2a18ff;
+        background-color: $colorTextBlue;
+    }
+    &__logo{
+        cursor: pointer;
     }
 }
 
@@ -46,9 +54,16 @@
 @media(max-width: 640px){
     .header {
         padding: 24px 0 20px; 
-
+        &__container{
+            align-items: center;
+            justify-content: center;
+        }
+        &__links{
+            // margin-top: 10px;
+            max-width: 290px;
+        }
         &__link{
-            display: none;
+            width: 100%;
         }
     }
 }

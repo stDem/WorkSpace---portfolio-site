@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Work Space - add vacancy</title>
+
+  <link rel="stylesheet" href="/style/css/normalize.css">
+  <link rel="stylesheet" href="/style/scss/style.css">
+  <link rel="stylesheet" href="/style/css/choices.min.css">
+  <link rel="icon" href="img/favico.svg"/>
+  <script src="/js/just-validate.min.js" defer></script>
+  <script src="/js/script.js" defer></script>
+
+</head>
+
+<body>
+  <header class="header">
+    <div class="container header__container">
+      <a href="index.html">
+        <img src="./img/logo.svg" alt="WorkSpace_logo" class="header__logo">
+      </a>
+      <a href="index.html#vacancies" class="header__link">View vacancies</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="employer">
+      <div class="container">
+        <h1 class="employer__title">Create your vacancy</h1>
+
+        <form class="employer__form">
+          <div class="employer__file file">
+            <div class="file__wrap-preview">
+              <img class="file__preview">
+            </div>
+
+            <div class="file__wrap-btn">
+              <label for="logo" class="file__label">+ upload logo</label>
+              <input class="file__input" type="file" id = "logo" accept="image/png, image/jpeg" name="logo" required>
+            </div>
+          </div>
+
+          <fieldset class="employer__fieldset employer__fieldset_input">
+            <div class="employer__wrap-input">
+              <label class="employer__label" for="company">Company name</label>
+              <input class="employer__input" type="text" id="company" name="company" placeholder="For example: MICROSOF">
+            </div>
+
+            <div class="employer__wrap-input">
+              <label class="employer__label" for="title">Vacancy name</label>
+              <input class="employer__input" type="text" id="title" name="title" placeholder="For example: Frontend-developer">
+            </div>
+
+            <div class="employer__wrap-input">
+              <label class="employer__label" for="salary">Salary</label>
+              <input class="employer__input" type="number" id="salary" name="salary" placeholder="2100">
+            </div>
+
+            <div class="employer__wrap-input">
+              <label class="employer__label" for="location">City</label>
+              <input class="employer__input" type="text" id="location" name="location" placeholder="For example: Münich">
+            </div>
+
+            <div class="employer__wrap-input">
+              <label class="employer__label" for="email">E-mail</label>
+              <input class="employer__input" type="email" id="email" name="email" placeholder="add e-mail">
+            </div>
+          </fieldset>
+
+          <fieldset class="employer__fieldset">
+            <label class="employer__label" for="description">Vacancy description</label>
+            <textarea class="employer__textarea" name="description" id="description" placeholder="add all necessary information"></textarea>
+          </fieldset>
+
+          <div class="employer__radio-btns">
+            <fieldset class="employer__fieldset-radio" id="format">
+              <legend class="employer__legend">Remote</legend>
+
+              <label class="employer__label-radio radio">
+                <input class="radio__input" type="radio" name="format" value="офис" >On-site
+              </label>
+
+              <label class="employer__label-radio radio">
+                <input class="radio__input" type="radio" name="format" value="удаленный" >Remote
+              </label>
+
+              <label class="employer__label-radio radio">
+                <input class="radio__input" type="radio" name="format" value="гибкий" >Hybrid
+              </label>
+            </fieldset>
+
+            <fieldset class="employer__fieldset-radio" id="experience">
+              <legend class="employer__legend">Work experience</legend>
+
+              <label class="employer__label-radio radio">
+                <input class="radio__input" type="radio" name="experience" value="не важно" >Not impotrant
+              </label>
+
+              <label class="employer__label-radio radio">
+                <input class="radio__input" type="radio" name="experience" value="без опыта" >No experience
+              </label>
+
+              <label class="employer__label-radio radio">
+                <input class="radio__input" type="radio" name="experience" value="от 1 года до 3-х лет" >From 1 year to 3 years
+              </label>
+
+              <label class="employer__label-radio radio">
+                <input class="radio__input" type="radio" name="experience" value="от 3-х лет" >From 3 years
+              </label>
+            </fieldset>
+
+            <fieldset class="employer__fieldset-radio" id="type">
+              <legend class="employer__legend">Job type</legend>
+
+              <label class="employer__label-radio radio">
+                <input class="radio__input" type="radio" name="type" value="полная занятость" >Full-time
+              </label>
+
+              <label class="employer__label-radio radio">
+                <input class="radio__input" type="radio" name="type" value="частичная занятость" >Part-time
+              </label>
+
+              <label class="employer__label-radio radio">
+                <input class="radio__input" type="radio" name="type" value="стажировка" >Intership
+              </label>
+
+              <label class="employer__label-radio radio">
+                <input class="radio__input" type="radio" name="type" value="проектная работа" >Contract
+              </label>
+            </fieldset>
+          </div>
+
+          <div class="employer__wrap-submit">
+            <button class="employer__submit" type="submit">Add vacancy</button>
+            <div class="employer__error">
+            </div>
+          </div>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer"> 
+    <div class="container footer__container">
+      <img src="/img/logo-light.svg" alt="light logo Work Space" class="footer__logo">
+      <p class="footer__copyright">© Work Space, 2024</p>
+
+      <ul class="footer__contacts">
+        <li class="footer__contact">Designer:
+          <a href="#" class="footer__link">AI</a>
+        </li>
+
+        <li class="footer__contact">Developer:
+          <a href="#" class="footer__link">Anastasiia Demidova</a>
+        </li>
+      </ul>
+    </div>
+  </footer>
+  
+</body>
+
+</html>
